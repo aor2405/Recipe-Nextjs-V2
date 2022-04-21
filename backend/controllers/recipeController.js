@@ -1,7 +1,10 @@
 const asyncHandler = require('express-async-handler');
+const Recipe = require('../models/recipeModel');
+const User = require('../models/userModel');
 
 const getRecipes = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: 'Get recipes' });
+  const recipes = await Recipe.find({ user: req.user.id });
+  res.status(200).json(recipes);
 });
 
 const postRecipe = asyncHandler(async (req, res) => {
@@ -9,15 +12,65 @@ const postRecipe = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('Please add a text field');
   }
-  res.status(200).json({ message: 'Create recipe' });
+  const recipe = await Recipe.create({
+    user: req.user.id,
+    title: req.body.title,
+    method: req.body.method,
+    description: req.body.description,
+    ingredients: req.body.ingredients,
+  });
+  res.status(200).json(recipe);
 });
 
 const updateRecipe = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: `Update recipe ${req.params.id}` });
+  const recipe = await Recipe.findById(req.params.id);
+
+  if (!recipe) {
+    res.status(400);
+    throw new Error('Recipe not found');
+  }
+
+  const user = await User.findById(req.user.id);
+
+  if (!user) {
+    res.status(401);
+    throw new Error('User not found');
+  }
+
+  if (recipe.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error('User not authorized');
+  }
+
+  const updatedRecipe = await Recipe.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true }
+  );
+  res.status(200).json(updatedRecipe);
 });
 
 const deleteRecipe = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: `Delete recipe ${req.params.id}` });
+  const recipe = await Recipe.findById(req.params.id);
+  if (!recipe) {
+    res.status(400);
+    throw new Error('Recipe not found');
+  }
+
+  const user = await User.findById(req.user.id);
+
+  if (!user) {
+    res.status(401);
+    throw new Error('User not found');
+  }
+
+  if (recipe.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error('User not authorized');
+  }
+
+  await recipe.remove();
+  res.status(200).json({ id: req.params.id });
 });
 
 module.exports = {
