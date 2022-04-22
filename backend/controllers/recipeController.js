@@ -8,18 +8,19 @@ const getRecipes = asyncHandler(async (req, res) => {
 });
 
 const postRecipe = asyncHandler(async (req, res) => {
-  if (!req.body.text) {
-    res.status(400);
-    throw new Error('Please add a text field');
-  }
-  const recipe = await Recipe.create({
-    user: req.user.id,
-    title: req.body.title,
-    method: req.body.method,
-    description: req.body.description,
-    ingredients: req.body.ingredients,
-  });
-  res.status(200).json(recipe);
+  console.log('POST REQ SUCCESSFUL');
+  // if (!req.body.text) {
+  //   res.status(400);
+  //   throw new Error('Please add a text field');
+  // }
+  // const recipe = await Recipe.create({
+  //   user: req.user.id,
+  //   title: req.body.title,
+  //   method: req.body.method,
+  //   description: req.body.description,
+  //   ingredients: req.body.ingredients,
+  // });
+  // res.status(200).json(recipe);
 });
 
 const updateRecipe = asyncHandler(async (req, res) => {
