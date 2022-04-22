@@ -43,12 +43,13 @@ export default function NewRecipeForm() {
       for (var pair of form.entries()) {
         data[pair[0]] = pair[1];
       }
-      // const response = await axios.post('/api/recipes', {
+      console.log('DATA', data);
+      // const response = await axios.post('api/recipes', {
       //   data,
       // });
-      const response = await axios.post('/recipe/new-recipe', {
-        data,
-      });
+      // const response = await axios.post('/recipe/new-recipe', {
+      //   data,
+      // });
       console.log('RESPIONSE', response);
     } catch (err) {
       console.log(err.message);
