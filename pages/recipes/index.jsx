@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import axios from 'axios';
 
@@ -11,12 +12,20 @@ export default function Home() {
   //   console.log(response);
   // });
 
+  //Select the loaded customers' list from central state
+  const userList = useSelector((state) => state.auth);
+  const { user } = userList;
+
   return (
     <div>
       <RecipeCard />
-      <Link href="/recipes/new-recipe" passHref>
-        <Button name="New Recipe" />
-      </Link>
+      {user ? (
+        <Link href="/recipes/new-recipe" passHref>
+          <Button name="New Recipe" />
+        </Link>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

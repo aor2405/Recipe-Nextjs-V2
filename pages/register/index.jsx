@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
-import { LockClosedIcon } from '@heroicons/react/solid';
 import NavBar from '../../components/layout/mainNavigation';
+import { register, reset } from '../../src/features/auth/authSlice';
+import Spinner from '../../components/Spinner';
+import { LockClosedIcon } from '@heroicons/react/solid';
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -13,6 +18,25 @@ export default function Register() {
 
   const { name, email, password, confirmPassword } = formData;
 
+  const dispatch = useDispatch();
+
+  const router = useRouter();
+
+  //Select the loaded customers' list from central state
+  const userList = useSelector((state) => state.auth);
+  const { user, isLoading, isError, isSuccess, message } = userList;
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, dispatch]);
+
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -22,7 +46,24 @@ export default function Register() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match');
+    } else {
+      const userData = {
+        name,
+        email,
+        password,
+      };
+      dispatch(register(userData));
+
+      router.replace('/recipes');
+    }
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>

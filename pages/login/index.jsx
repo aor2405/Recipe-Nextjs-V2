@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 import { LockClosedIcon } from '@heroicons/react/solid';
 import NavBar from '../../components/layout/mainNavigation';
+import Spinner from '../../components/Spinner';
+import { login, reset } from '../../src/features/auth/authSlice';
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -10,6 +15,25 @@ export default function Login() {
   });
 
   const { email, password } = formData;
+
+  const dispatch = useDispatch();
+
+  const router = useRouter();
+
+  //Select the loaded customers' list from central state
+  const userList = useSelector((state) => state.auth);
+  const { user, isLoading, isError, isSuccess, message } = userList;
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -20,7 +44,16 @@ export default function Login() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    const userData = { email, password };
+
+    dispatch(login(userData));
+    router.replace('/recipes');
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>

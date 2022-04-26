@@ -27,7 +27,7 @@ export default function NewRecipeForm() {
     });
   }
 
-  const submitHandler = async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     try {
       const { title, description, method, ingredients, image } = formData;
@@ -56,6 +56,34 @@ export default function NewRecipeForm() {
     }
   };
 
+  // const [formData, setFormData] = useState({
+  //   title: '',
+  //   description: '',
+  //   method: '',
+  //   ingredients: '',
+  //   image: '',
+  // });
+
+  // function handleChange(e) {
+  //   const value = e.target.value;
+  //   setFormData({
+  //     ...formData,
+  //     [e.target.name]: value,
+  //   });
+  // }
+
+  // function imageHandler(e) {
+  //   const image = e.target.files[0];
+  //   setFormData({
+  //     ...formData,
+  //     [e.target.name]: image,
+  //   });
+  // }
+
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+  // };
+
   return (
     <>
       <NavBar />
@@ -83,7 +111,7 @@ export default function NewRecipeForm() {
               </div>
             </div>
             <div className="mt-5 md:mt-0 md:col-span-2">
-              <form onSubmit={submitHandler} enctype="multipart/form-data">
+              <form onSubmit={onSubmit} enctype="multipart/form-data">
                 <div className="shadow sm:rounded-md sm:overflow-hidden">
                   <div className="px-4 py-5 bg-slate-50 space-y-6 sm:p-6">
                     <div>
