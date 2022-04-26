@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Logo from '../Logo/Logo';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import {
@@ -7,14 +8,30 @@ import {
   MenuIcon,
   XIcon,
   LoginIcon,
+  LogoutIcon,
   UserCircleIcon,
 } from '@heroicons/react/outline';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout, reset } from '../../src/features/auth/authSlice';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
 export default function NavBar() {
+  const dispatch = useDispatch();
+
+  //Select the loaded customers' list from central state
+  const userList = useSelector((state) => state.auth);
+  const { user } = userList;
+  const router = useRouter();
+
+  const onLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    router.replace('/recipes');
+  };
+
   return (
     <Disclosure as="nav" className="bg-white shadow border-2 border-cyan-500">
       {({ open }) => (
@@ -60,21 +77,32 @@ export default function NavBar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <div className="mr-4">
-                  <Link href="/login">
-                    <a className="flex">
-                      <LoginIcon className="w-5 h-5 mr-1 mt-1" />
-                      <p>Login</p>
-                    </a>
-                  </Link>
-                </div>
-
-                <Link href="/register">
-                  <a className="flex">
-                    <UserCircleIcon className="w-5 h-5 mr-1 mt-1" />
-                    <p>Register</p>
-                  </a>
-                </Link>
+                {user ? (
+                  <div>
+                    <button className="flex" onClick={onLogout}>
+                      <LogoutIcon className="w-5 h-5 mr-1 mt-1" />
+                      <p>Logout</p>
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    {' '}
+                    <div className="mr-4">
+                      <Link href="/login">
+                        <a className="flex">
+                          <LoginIcon className="w-5 h-5 mr-1 mt-1" />
+                          <p>Login</p>
+                        </a>
+                      </Link>
+                    </div>
+                    <Link href="/register">
+                      <a className="flex">
+                        <UserCircleIcon className="w-5 h-5 mr-1 mt-1" />
+                        <p>Register</p>
+                      </a>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>
