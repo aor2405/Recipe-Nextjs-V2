@@ -7,6 +7,9 @@ const recipeSchema = mongoose.Schema(
       required: true,
       ref: 'User',
     },
+    userName: {
+      type: String,
+    },
     title: {
       type: String,
       required: [true, 'Please add a title'],
@@ -22,6 +25,9 @@ const recipeSchema = mongoose.Schema(
     method: {
       type: String,
       required: [true, 'Please add a method'],
+    },
+    image: {
+      type: String,
     },
   },
   { timestamps: true }
