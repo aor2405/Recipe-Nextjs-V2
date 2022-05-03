@@ -4,7 +4,6 @@ import authService from './authService';
 let user;
 
 if (typeof window !== 'undefined') {
-  console.log('You are on the browser');
   user = JSON.parse(localStorage.getItem('user'));
 }
 
