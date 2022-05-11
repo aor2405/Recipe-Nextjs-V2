@@ -3,17 +3,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 
-import Spinner from '../../../components/Spinner';
+import Spinner from '../../../../components/Spinner';
 import {
   createRecipe,
   createRecipeImage,
-} from '../../../src/features/recipes/recipeSlice';
+  updateRecipe,
+} from '../../../../src/features/recipes/recipeSlice';
 
-import NavBar from '../../../components/layout/mainNavigation';
+import NavBar from '../../../../components/layout/mainNavigation';
 
-export default function NewRecipeForm() {
+export default function editRecipeForm() {
   const [mounted, setMounted] = useState(false);
   const [selectedImage, setSelectedImage] = useState();
+  const [pathname, setPathname] = useState('');
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -24,6 +26,8 @@ export default function NewRecipeForm() {
 
   useEffect(() => {
     setMounted(true);
+    const recipeId = window.location.pathname;
+    setPathname(recipeId);
   }, []);
 
   const dispatch = useDispatch();
@@ -52,17 +56,22 @@ export default function NewRecipeForm() {
     }
     const imageData = new FormData();
     imageData.append('image', selectedImage);
+    console.log('FORM', formData);
+    const route = pathname.slice(9);
+    dispatch(updateRecipe({ formData, route }));
+    router.replace('/recipes');
 
-    await dispatch(createRecipeImage(imageData)).then((result) => {
-      setFormData((prevState) => ({
-        ...prevState,
-        image: result.payload.url,
-      }));
-    });
+    // await dispatch(createRecipeImage(imageData)).then((result) => {
+    //   setFormData((prevState) => ({
+    //     ...prevState,
+    //     image: result.payload.url,
+    //   }));
+    // });
   };
 
   if (formData.image.length > 0) {
-    dispatch(createRecipe({ formData }));
+    dispatch(updateRecipe({ formData }));
+    console.log('dispatch');
     setFormData({
       title: '',
       description: '',
@@ -99,12 +108,13 @@ export default function NewRecipeForm() {
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
               <div className="px-4 sm:px-0">
-                <h3 className="text-2xl font-medium leading-6 text-gray-900">
-                  Add a new recipe
+                <h3 className="text-lg font-medium leading-6 text-gray-900">
+                  Edit your recipe
                 </h3>
                 <p className="mt-1 text-sm text-gray-600">
-                  This recipe will be available for all users of Recipes to
-                  explore and rate.
+                  This recipe will be available for all users of{' '}
+                  <span className="italic">O'Reilly Recipes</span> to explore
+                  and rate.
                 </p>
               </div>
               <div>
@@ -116,7 +126,7 @@ export default function NewRecipeForm() {
                 </div>
               </div>
             </div>
-            <div className="mt-5 md:mt-0 md:col-span-2 rounded-lg bg-burntOrange">
+            <div className="mt-5 md:mt-0 md:col-span-2 bg-burntOrange">
               <form
                 onSubmit={onSubmit}
                 method="POST"
@@ -164,8 +174,7 @@ export default function NewRecipeForm() {
 
                     <div>
                       <label className="block text-sm font-medium text-peach">
-                        Ingredients - (Use the '.' symbol to show a new
-                        ingredient)
+                        Ingredients
                       </label>
                       <div className="mt-1">
                         <textarea
@@ -240,10 +249,10 @@ export default function NewRecipeForm() {
                     </div>
                   </div>
 
-                  <div className="px-4 py-3 text-right sm:px-6">
+                  <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                     <button
                       type="submit"
-                      className="inline-flex bg-peach justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-500 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-500 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
                     >
                       Submit
                     </button>

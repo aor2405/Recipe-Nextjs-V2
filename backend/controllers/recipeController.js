@@ -8,9 +8,15 @@ const Recipe = require('../models/recipeModel');
 const User = require('../models/userModel');
 
 const getRecipes = asyncHandler(async (req, res) => {
-  let data = [];
   const allRecipes = await Recipe.find({});
   res.status(200).json(allRecipes);
+});
+
+const singleRecipe = asyncHandler(async (req, res) => {
+  const recipe = await Recipe.findById(req.params.id);
+  const newIngredientsArray = recipe.ingredients.split('.');
+  const newRecipe = { ...recipe._doc, ingredients: newIngredientsArray };
+  res.status(200).json(newRecipe);
 });
 
 // const getUserRecipes = asyncHandler(async (req, res) => {
@@ -24,13 +30,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 const cloudinaryUpload = (file) => cloudinary.uploader.upload(file);
-
-// const storage = new CloudinaryStorage({
-//   cloudinary: cloudinary,
-//   params: {
-//     folder: 'Recipes',
-//   },
-// });
 
 const parser = new DatauriParser();
 
@@ -60,14 +59,16 @@ const postRecipe = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('Please fill out the input fields');
   }
-
   const { title, method, description, ingredients, image } = req.body.formData;
-  console.log('REQ USER', req.user);
+
+  const newMethodArray = method.split('*');
+  const newMethod = newMethodArray;
+
   const recipe = await Recipe.create({
     user: req.user.id,
     userName: req.user.name,
     title: title,
-    method: method,
+    method: newMethod,
     description: description,
     ingredients: ingredients,
     image: image,
@@ -76,7 +77,10 @@ const postRecipe = asyncHandler(async (req, res) => {
 });
 
 const updateRecipe = asyncHandler(async (req, res) => {
+  console.log('INSIDE THE CONTROLLER');
   const recipe = await Recipe.findById(req.params.id);
+  console.log('RECIPE', recipe);
+  console.log('REQ.BODY', req.body);
 
   if (!recipe) {
     res.status(400);
@@ -98,7 +102,7 @@ const updateRecipe = asyncHandler(async (req, res) => {
     req.body,
     { new: true }
   );
-  res.status(200).json(updatedRecipe);
+  res.status(200).json([updatedRecipe]);
 });
 
 const deleteRecipe = asyncHandler(async (req, res) => {
@@ -124,6 +128,7 @@ const deleteRecipe = asyncHandler(async (req, res) => {
 
 module.exports = {
   getRecipes,
+  singleRecipe,
   postRecipe,
   imageRecipe,
   updateRecipe,
