@@ -23,7 +23,7 @@ const recipeSchema = mongoose.Schema(
       required: [true, 'Please add ingredients'],
     },
     method: {
-      type: String,
+      type: Array,
       required: [true, 'Please add a method'],
     },
     image: {

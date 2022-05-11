@@ -4,10 +4,10 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 import { getRecipes, reset } from '../../src/features/recipes/recipeSlice';
-import RecipeCardMock from '../../components/RecipeCardMock';
 import RecipeCard from '../../components/RecipeCard';
 import Button from '../../components/Button';
 import Spinner from '../../components/Spinner';
+import NavBar from '../../components/layout/mainNavigation';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -20,7 +20,7 @@ export default function Home() {
   const { user } = userList;
 
   const recipeList = useSelector((state) => state.recipes);
-  const { recipe, isLoading, isError, message } = recipeList;
+  const { recipes, isLoading, isError, message } = recipeList;
 
   const dispatch = useDispatch();
 
@@ -30,9 +30,9 @@ export default function Home() {
     }
 
     dispatch(getRecipes());
-    // return () => {
-    //   dispatch(reset());
-    // };
+    return () => {
+      dispatch(reset());
+    };
   }, [isError, message, dispatch]);
 
   if (isLoading) {
@@ -40,16 +40,9 @@ export default function Home() {
   }
   return (
     mounted && (
-      <div>
-        {/* {recipe && (
-          <div>
-            {recipe.map((recipe, idx) => (
-              <div key={idx}>{recipe.title}</div>
-            ))}
-          </div>
-        )} */}
-        <RecipeCard recipes={recipe} />
-        <RecipeCardMock />
+      <>
+        <NavBar />
+        <RecipeCard recipes={recipes} />
         {user ? (
           <Link href="/recipes/new-recipe" passHref>
             <Button name="New Recipe" />
@@ -57,7 +50,7 @@ export default function Home() {
         ) : (
           <></>
         )}
-      </div>
+      </>
     )
   );
 }

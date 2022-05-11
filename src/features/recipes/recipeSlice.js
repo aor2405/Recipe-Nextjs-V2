@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import recipeService from './recipeService';
 
 const initialState = {
-  recipe: [],
+  recipes: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -65,6 +65,24 @@ export const getRecipes = createAsyncThunk(
   }
 );
 
+export const getSingleRecipe = createAsyncThunk(
+  'recipes/getSingleRecipe',
+  async (recipeId, thunkAPI) => {
+    try {
+      return await recipeService.getSingleRecipe(recipeId);
+    } catch (err) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 // Get user specific recipes
 // export const getRecipes = createAsyncThunk(
 //   'recipes/getUserRecipes',
@@ -85,6 +103,51 @@ export const getRecipes = createAsyncThunk(
 //   }
 // );
 
+export const updateRecipe = createAsyncThunk(
+  'recipes/updateRecipe',
+  async (recipeData, thunkAPI) => {
+    try {
+      console.log('INSIDE SLICE 1', recipeData.formData);
+      console.log('INSIDE SLICE 2', recipeData.route);
+      const token = thunkAPI.getState().auth.user.token;
+      return await recipeService.updateRecipe(
+        recipeData.formData,
+        recipeData.route,
+        token
+      );
+    } catch (err) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const deleteRecipe = createAsyncThunk(
+  'recipes/deleteRecipe',
+  async (recipeId, thunkAPI) => {
+    try {
+      console.log('INSIDE SLICE', recipeId);
+      const token = thunkAPI.getState().auth.user.token;
+      return await recipeService.deleteRecipe(recipeId, token);
+    } catch (err) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const recipeSlice = createSlice({
   name: 'recipe',
   initialState,
@@ -93,15 +156,36 @@ export const recipeSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(createRecipe.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(createRecipe.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.isSuccess = true;
-        state.recipe.push(action.payload);
+        state.recipes.push(action.payload);
       })
       .addCase(createRecipe.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(updateRecipe.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateRecipe.fulfilled, (state, action) => {
+        state.isSuccess = true;
+        console.log('action', action.payload);
+        state.recipes.push(action.payload);
+      })
+      .addCase(updateRecipe.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(createRecipeImage.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createRecipeImage.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.recipes.push(action.payload);
+      })
+      .addCase(createRecipeImage.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
@@ -111,10 +195,38 @@ export const recipeSlice = createSlice({
       })
       .addCase(getRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isSuccess = true;
-        state.recipe = action.payload;
+        // state.isSuccess = true;
+        state.recipes = action.payload;
       })
       .addCase(getRecipes.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getSingleRecipe.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getSingleRecipe.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.recipes = action.payload;
+      })
+      .addCase(getSingleRecipe.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(deleteRecipe.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteRecipe.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.recipes = state.recipes.filter(
+          (recipe) => recipe._id !== action.payload.id
+        );
+      })
+      .addCase(deleteRecipe.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
