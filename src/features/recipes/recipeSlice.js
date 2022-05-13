@@ -107,8 +107,6 @@ export const updateRecipe = createAsyncThunk(
   'recipes/updateRecipe',
   async (recipeData, thunkAPI) => {
     try {
-      console.log('INSIDE SLICE 1', recipeData.formData);
-      console.log('INSIDE SLICE 2', recipeData.route);
       const token = thunkAPI.getState().auth.user.token;
       return await recipeService.updateRecipe(
         recipeData.formData,
@@ -132,7 +130,6 @@ export const deleteRecipe = createAsyncThunk(
   'recipes/deleteRecipe',
   async (recipeId, thunkAPI) => {
     try {
-      console.log('INSIDE SLICE', recipeId);
       const token = thunkAPI.getState().auth.user.token;
       return await recipeService.deleteRecipe(recipeId, token);
     } catch (err) {
@@ -170,7 +167,6 @@ export const recipeSlice = createSlice({
       })
       .addCase(updateRecipe.fulfilled, (state, action) => {
         state.isSuccess = true;
-        console.log('action', action.payload);
         state.recipes.push(action.payload);
       })
       .addCase(updateRecipe.rejected, (state, action) => {
@@ -183,7 +179,7 @@ export const recipeSlice = createSlice({
       })
       .addCase(createRecipeImage.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.recipes.push(action.payload);
+        // state.recipes.push(action.payload);
       })
       .addCase(createRecipeImage.rejected, (state, action) => {
         state.isLoading = false;

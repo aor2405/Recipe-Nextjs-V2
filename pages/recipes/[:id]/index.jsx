@@ -45,16 +45,12 @@ function index() {
     mounted && (
       <>
         <NavBar />
-        <div className="h-screen max-w-3xl mx-auto mt-8 sm:max-w-7xl sm:px-8 sm:grid sm:grid-cols-12 sm:gap-8">
-          <div className="sm:col-span-4">
+
+        <div className="max-w-3xl mx-auto mt-8 pb-8 sm:max-w-7xl sm:px-8 sm:grid sm:grid-cols-12 sm:gap-8">
+          <aside className="sm:col-span-4 h-screen">
             <div className="w-full rounded-lg bg-burntOrange shadow text-peach  ">
               <div className="flex-shrink-0">
-                {/* <img
-                  className="h-48 w-full object-cover rounded-t-lg"
-                  src={recipe.image}
-                  alt="Recipe image"
-                /> */}
-                <h2 className="text-2xl font-bold font-header pl-6">
+                <h2 className="text-2xl font-bold font-header pl-6 pt-6">
                   Description
                 </h2>
                 <div className="mt-2 px-4 text">{recipes.description}</div>
@@ -69,9 +65,9 @@ function index() {
                   ))}
               </ul>
             </div>
-          </div>
+          </aside>
 
-          <div className="mt-8 sm:mt-0 sm:col-span-8">
+          <article className="mt-8 sm:mt-0 sm:col-span-8">
             <div className="w-full rounded-lg bg-burntOrange text-peach  shadow">
               <div className="flex justify-center">
                 <h1 className="text-5xl font-extrabold font-header mt-3">
@@ -86,8 +82,6 @@ function index() {
                     alt="Recipe image"
                   />
                 </div>
-                {/* <h2 className="text-xl font-bold">Description</h2>
-                <div className="mt-2">{recipe.description}</div> */}
                 <h2 className="text-2xl mt-6 font-bold font-header">Method</h2>
                 <ul className="ml-6 mt-2 list-decimal">
                   {recipes.method &&
@@ -96,37 +90,36 @@ function index() {
                     ))}
                 </ul>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          {user._id === recipes.user && (
-            <div>
-              <div className="mt-3 sm:mt-0 sm:ml-3 bg-burntOrange rounded-lg">
-                <Link href={`/recipes/${pathname.slice(9)}/edit`}>
-                  <button
-                    type="submit"
-                    className="block w-full py-3 px-4 text-peach rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-                  >
-                    Edit
-                  </button>
-                </Link>
+              <div>
+                {user._id === recipes.user && (
+                  <div className="mt-2 pb-8 flex justify-center">
+                    <div className="mt-3 sm:mt-3 sm:ml-3 w-40 bg-peach rounded-lg">
+                      <Link href={`/recipes/${pathname.slice(9)}/edit`}>
+                        <button
+                          type="submit"
+                          className="block w-full py-3 px-4 text-burntOrange rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                        >
+                          Edit
+                        </button>
+                      </Link>
+                    </div>
+                    <div className="mt-3 sm:mt-3 sm:ml-3 w-40 bg-peach rounded-lg">
+                      <Link href="/recipes">
+                        <button
+                          onClick={() => {
+                            dispatch(deleteRecipe(recipes._id));
+                          }}
+                          className="block w-full py-3 px-4 text-burntOrange rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                        >
+                          Delete
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                )}
               </div>
-              <div className="mt-3 sm:mt-3 sm:ml-3 bg-burntOrange rounded-lg">
-                <Link href="/recipes">
-                  <button
-                    onClick={() => {
-                      dispatch(deleteRecipe(recipes._id));
-                    }}
-                    className="block w-full py-3 px-4 text-peach rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-                  >
-                    Delete
-                  </button>
-                </Link>
-              </div>
             </div>
-          )}
+          </article>
         </div>
       </>
     )

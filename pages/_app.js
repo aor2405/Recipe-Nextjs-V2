@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <main className="bg-peach">
+      <main className="bg-peach  ">
         <Component {...pageProps} />
         <ToastContainer />
       </main>

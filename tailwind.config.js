@@ -8,6 +8,7 @@ module.exports = {
     colors: {
       burntOrange: '#EE4E34',
       peach: '#fcedda',
+      grey: '#5e5e5e',
     },
     extend: {
       fontFamily: {

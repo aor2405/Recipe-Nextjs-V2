@@ -36,7 +36,7 @@ export default function Home() {
                           <Link href="/recipes">
                             <button
                               type="submit"
-                              className="block w-full py-3 px-4 text-burntOrange rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                              className="block w-full py-3 px-4  rounded-lg font-mediumfocus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                             >
                               View Recipes
                             </button>

@@ -40,17 +40,10 @@ export default function Home() {
   }
   return (
     mounted && (
-      <>
+      <div className="">
         <NavBar />
         <RecipeCard recipes={recipes} />
-        {user ? (
-          <Link href="/recipes/new-recipe" passHref>
-            <Button name="New Recipe" />
-          </Link>
-        ) : (
-          <></>
-        )}
-      </>
+      </div>
     )
   );
 }

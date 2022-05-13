@@ -122,6 +122,7 @@ export default function Register() {
                   <input
                     id="password"
                     name="password"
+                    type="password"
                     autoComplete="current-password"
                     value={password}
                     required
@@ -137,7 +138,7 @@ export default function Register() {
                   <input
                     id="confirm-password"
                     name="confirmPassword"
-                    type="confirmPassword"
+                    type="Password"
                     autoComplete="confirm-password"
                     value={confirmPassword}
                     required

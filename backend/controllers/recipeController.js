@@ -77,10 +77,7 @@ const postRecipe = asyncHandler(async (req, res) => {
 });
 
 const updateRecipe = asyncHandler(async (req, res) => {
-  console.log('INSIDE THE CONTROLLER');
   const recipe = await Recipe.findById(req.params.id);
-  console.log('RECIPE', recipe);
-  console.log('REQ.BODY', req.body);
 
   if (!recipe) {
     res.status(400);
