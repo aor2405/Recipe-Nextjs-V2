@@ -51,27 +51,25 @@ export default function editRecipeForm() {
   const onSubmit = async (e) => {
     e.preventDefault();
 
+    // Return error message for validation
     if (!selectedImage) {
       return;
     }
+
     const imageData = new FormData();
     imageData.append('image', selectedImage);
-    console.log('FORM', formData);
-    const route = pathname.slice(9);
-    dispatch(updateRecipe({ formData, route }));
-    router.replace('/recipes');
 
-    // await dispatch(createRecipeImage(imageData)).then((result) => {
-    //   setFormData((prevState) => ({
-    //     ...prevState,
-    //     image: result.payload.url,
-    //   }));
-    // });
+    await dispatch(createRecipeImage(imageData)).then((result) => {
+      setFormData((prevState) => ({
+        ...prevState,
+        image: result.payload.url,
+      }));
+    });
   };
 
   if (formData.image.length > 0) {
-    dispatch(updateRecipe({ formData }));
-    console.log('dispatch');
+    const route = pathname.slice(9);
+    dispatch(updateRecipe({ formData, route }));
     setFormData({
       title: '',
       description: '',
@@ -83,17 +81,13 @@ export default function editRecipeForm() {
     router.replace('/recipes');
   }
 
+  // console.log('formResult', formData);
+
   const customIdPending = 'custom-id-pending';
   const customIdSuccess = 'custom-id-success';
 
-  if (isSuccess) {
-    toast.success('Recipe created!', {
-      toastId: customIdSuccess,
-    });
-  }
-
   if (isLoading) {
-    toast.info('Posting your recipe!', {
+    toast.info('Updating your recipe!', {
       toastId: customIdPending,
       autoClose: 1000,
     });
@@ -108,10 +102,10 @@ export default function editRecipeForm() {
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
               <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
+                <h3 className="text-lg font-medium leading-6">
                   Edit your recipe
                 </h3>
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-2 text-sm text-grey">
                   This recipe will be available for all users of{' '}
                   <span className="italic">O'Reilly Recipes</span> to explore
                   and rate.
@@ -120,7 +114,7 @@ export default function editRecipeForm() {
               <div>
                 <div className="mx-auto mt-12 max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
                   <img
-                    src="https://images.unsplash.com/photo-1459789034005-ba29c5783491?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2738&q=80"
+                    src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
                     alt="Photo of a Waffle"
                   />
                 </div>

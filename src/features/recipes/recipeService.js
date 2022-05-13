@@ -35,7 +35,6 @@ const getSingleRecipe = async (recipeId) => {
 };
 
 const updateRecipe = async (recipeData, route, token) => {
-  console.log('INSIDE SERVICE', route);
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

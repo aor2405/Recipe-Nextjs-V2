@@ -99,18 +99,19 @@ export default function NewRecipeForm() {
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
               <div className="px-4 sm:px-0">
-                <h3 className="text-2xl font-medium leading-6 text-gray-900">
+                <h3 className="text-2xl font-medium leading-6">
                   Add a new recipe
                 </h3>
-                <p className="mt-1 text-sm text-gray-600">
-                  This recipe will be available for all users of Recipes to
-                  explore and rate.
+                <p className="mt-2 text-sm text-grey">
+                  This recipe will be available for all users of{' '}
+                  <span className="italic">O'Reilly Recipes</span> to explore
+                  and rate.
                 </p>
               </div>
               <div>
                 <div className="mx-auto mt-12 max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
                   <img
-                    src="https://images.unsplash.com/photo-1459789034005-ba29c5783491?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2738&q=80"
+                    src="https://images.unsplash.com/photo-1540660290370-8aa90e451e8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
                     alt="Photo of a Waffle"
                   />
                 </div>
@@ -243,7 +244,7 @@ export default function NewRecipeForm() {
                   <div className="px-4 py-3 text-right sm:px-6">
                     <button
                       type="submit"
-                      className="inline-flex bg-peach justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-500 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                      className="inline-flex bg-peach justify-center py-2 px-4 border border-grey border-transparent shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
                     >
                       Submit
                     </button>
