@@ -69,8 +69,10 @@ export default function Register() {
   return (
     <>
       <NavBar />
-      <div className="max-w-3xl mx-auto sm:max-w-7xl sm:px-8 sm:grid sm:grid-cols-12 sm:gap-8">
-        <main className="sm:pt-24 h-screen sm:mt-0 sm:col-start-5 sm:col-span-4">
+      {/* <div className="max-w-3xl mx-auto sm:max-w-7xl sm:px-8 sm:grid sm:grid-cols-12 sm:gap-8"> */}
+      <div className="max-w-xl mx-auto px-8 grid grid-col-12 lg:max-w-7xl lg:grid-cols-12 lg:gap-8">
+        {/* <main className="sm:pt-24 h-screen sm:mt-0 sm:col-start-5 sm:col-span-4"> */}
+        <main className="h-screen pt-12 lg:pt-24 lg:col-start-4 lg:col-span-6">
           <div className="w-full rounded-lg bg-burntOrange shadow p-6">
             <div>
               <div className="flex justify-center">
@@ -94,7 +96,7 @@ export default function Register() {
                     autoComplete="name"
                     value={name}
                     required
-                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-xs sm:text-sm"
                     placeholder="Enter your name"
                     onChange={onChange}
                   />
@@ -110,7 +112,7 @@ export default function Register() {
                     autoComplete="email"
                     value={email}
                     required
-                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-xs sm:text-sm"
                     placeholder="Enter your email address"
                     onChange={onChange}
                   />
@@ -126,7 +128,7 @@ export default function Register() {
                     autoComplete="current-password"
                     value={password}
                     required
-                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-xs sm:text-sm"
                     placeholder="Enter your password"
                     onChange={onChange}
                   />
@@ -142,7 +144,7 @@ export default function Register() {
                     autoComplete="confirm-password"
                     value={confirmPassword}
                     required
-                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-xs sm:text-sm"
                     placeholder="Confirm password"
                     onChange={onChange}
                   />
@@ -152,11 +154,11 @@ export default function Register() {
               <div>
                 <button
                   type="submit"
-                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-peach bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-peach"
                 >
                   <span className="absolute left-0 inset-y-0 flex items-center pl-3 ">
                     <LockClosedIcon
-                      className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                      className="h-5 w-5 text-burntOrange "
                       aria-hidden="true"
                     />
                   </span>

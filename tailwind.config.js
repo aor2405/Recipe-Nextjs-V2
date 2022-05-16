@@ -5,15 +5,18 @@ module.exports = {
   ],
   important: true,
   theme: {
-    colors: {
-      burntOrange: '#EE4E34',
-      peach: '#fcedda',
-      grey: '#5e5e5e',
-    },
     extend: {
       fontFamily: {
         sans: ['Libre Baskerville', 'serif'],
         header: ['Courgette', 'cursive'],
+      },
+      colors: {
+        burntOrange: '#EE4E34',
+        peach: '#fcedda',
+        grey: '#5e5e5e',
+      },
+      screens: {
+        xs: '380px',
       },
     },
   },

@@ -95,28 +95,30 @@ export default function NewRecipeForm() {
     mounted && (
       <>
         <NavBar />
-        <div className="max-w-7xl mx-auto  py-6 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto py-6 lg:px-8">
           <div className="md:grid md:grid-cols-3 md:gap-6">
-            <div className="md:col-span-1">
-              <div className="px-4 sm:px-0">
-                <h3 className="text-2xl font-medium leading-6">
+            <aside className="md:col-span-1">
+              <div className="px-4 sm:px-0 text-center">
+                <h3 className="text-2xl font-medium leading-6 ">
                   Add a new recipe
                 </h3>
                 <p className="mt-2 text-sm text-grey">
-                  This recipe will be available for all users of{' '}
+                  This recipe will be available for all users of
                   <span className="italic">O'Reilly Recipes</span> to explore
                   and rate.
                 </p>
               </div>
+
               <div>
-                <div className="mx-auto mt-12 max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
+                <div className="hidden lg:block sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
                   <img
                     src="https://images.unsplash.com/photo-1540660290370-8aa90e451e8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
                     alt="Photo of a Waffle"
                   />
                 </div>
               </div>
-            </div>
+            </aside>
+
             <div className="mt-5 md:mt-0 md:col-span-2 rounded-lg bg-burntOrange">
               <form
                 onSubmit={onSubmit}
@@ -124,7 +126,7 @@ export default function NewRecipeForm() {
                 enctype="multipart/form-data"
               >
                 <div className="shadow sm:rounded-md sm:overflow-hidden">
-                  <div className="px-4 py-5 bg-slate-50 space-y-6 sm:p-6">
+                  <div className="px-4 py-5 space-y-6 sm:p-6">
                     <div>
                       <label
                         htmlFor="title"
@@ -200,10 +202,10 @@ export default function NewRecipeForm() {
                       <label className="block text-sm font-medium text-peach">
                         Cover photo
                       </label>
-                      <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                      <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-black border-dashed rounded-md">
                         <div className="space-y-1 text-center">
                           <svg
-                            className="mx-auto h-12 w-12 text-gray-400"
+                            className="mx-auto h-12 w-12 text-black"
                             stroke="currentColor"
                             fill="none"
                             viewBox="0 0 48 48"
@@ -216,24 +218,22 @@ export default function NewRecipeForm() {
                               strokeLinejoin="round"
                             />
                           </svg>
-                          <div className="flex text-sm text-gray-600">
+                          <div className="flex text-sm text-black lg:pl-32">
                             <label
                               htmlFor="image"
-                              className="relative cursor-pointer bg-white rounded-md font-medium text-cyan-600 hover:text-cyan-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500"
+                              className="relative cursor-pointer bg-burntOrange rounded-md font-medium text-black hover:text-peach focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500"
                             >
-                              <span>Upload a file</span>
                               <input
-                                onChange={imageHandler}
+                                type="file"
+                                class="admin__input"
                                 id="image"
                                 name="image"
-                                type="file"
-                                className="sr-only"
-                                accept=".jpg, .png, .jpeg"
+                                className="w-full"
+                                onChange={imageHandler}
                               />
                             </label>
-                            <p className="pl-1">or drag and drop</p>
                           </div>
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs text-black">
                             PNG, JPG, JPEG up to 10MB
                           </p>
                         </div>
@@ -249,14 +249,6 @@ export default function NewRecipeForm() {
                       Submit
                     </button>
                   </div>
-
-                  <input
-                    type="file"
-                    class="admin__input"
-                    id="image"
-                    name="image"
-                    onChange={imageHandler}
-                  />
                 </div>
               </form>
             </div>

@@ -41,13 +41,15 @@ function index() {
     return <Spinner />;
   }
 
+  console.log('USER', user);
+
   return (
     mounted && (
       <>
         <NavBar />
 
         <div className="max-w-3xl mx-auto mt-8 pb-8 sm:max-w-7xl sm:px-8 sm:grid sm:grid-cols-12 sm:gap-8">
-          <aside className="sm:col-span-4 h-screen">
+          <aside className="sm:col-span-4 sm:h-screen">
             <div className="w-full rounded-lg bg-burntOrange shadow text-peach  ">
               <div className="flex-shrink-0">
                 <h2 className="text-2xl font-bold font-header pl-6 pt-6">
@@ -91,31 +93,35 @@ function index() {
                 </ul>
               </div>
               <div>
-                {user._id === recipes.user && (
-                  <div className="mt-2 pb-8 flex justify-center">
-                    <div className="mt-3 sm:mt-3 sm:ml-3 w-40 bg-peach rounded-lg">
-                      <Link href={`/recipes/${pathname.slice(9)}/edit`}>
-                        <button
-                          type="submit"
-                          className="block w-full py-3 px-4 text-burntOrange rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-                        >
-                          Edit
-                        </button>
-                      </Link>
+                {user ? (
+                  user._id === recipes.user && (
+                    <div className="mt-2 pb-8 flex justify-center">
+                      <div className="mt-3 sm:mt-3 sm:ml-3 w-40 bg-peach rounded-lg">
+                        <Link href={`/recipes/${pathname.slice(9)}/edit`}>
+                          <button
+                            type="submit"
+                            className="block w-full py-3 px-4 text-burntOrange rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                          >
+                            Edit
+                          </button>
+                        </Link>
+                      </div>
+                      <div className="mt-3 sm:mt-3 sm:ml-3 w-40 bg-peach rounded-lg">
+                        <Link href="/recipes">
+                          <button
+                            onClick={() => {
+                              dispatch(deleteRecipe(recipes._id));
+                            }}
+                            className="block w-full py-3 px-4 text-burntOrange rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                          >
+                            Delete
+                          </button>
+                        </Link>
+                      </div>
                     </div>
-                    <div className="mt-3 sm:mt-3 sm:ml-3 w-40 bg-peach rounded-lg">
-                      <Link href="/recipes">
-                        <button
-                          onClick={() => {
-                            dispatch(deleteRecipe(recipes._id));
-                          }}
-                          className="block w-full py-3 px-4 text-burntOrange rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-                        >
-                          Delete
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
+                  )
+                ) : (
+                  <div></div>
                 )}
               </div>
             </div>

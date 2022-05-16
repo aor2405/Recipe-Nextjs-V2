@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
 
 import { getRecipes, reset } from '../../src/features/recipes/recipeSlice';
 import RecipeCard from '../../components/RecipeCard';
-import Button from '../../components/Button';
 import Spinner from '../../components/Spinner';
 import NavBar from '../../components/layout/mainNavigation';
+import AllRecipe from '../../components/Logo/AllRecipe';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -40,10 +38,23 @@ export default function Home() {
   }
   return (
     mounted && (
-      <div className="">
+      <>
         <NavBar />
-        <RecipeCard recipes={recipes} />
-      </div>
+        <div className="relative pt-4 pb-20 px-4 sm:px-6 lg:pt-12 lg:pb-28 lg:px-8">
+          <div className="relative max-w-7xl mx-auto">
+            <div className="text-center flex justify-evenly">
+              <div className="mt-10 w-72 lg:w-96">
+                <AllRecipe />
+              </div>
+              <div className="hidden lg:block w-40">
+                <img src="/images/table.svg" alt="" />
+              </div>
+            </div>
+
+            <RecipeCard recipes={recipes} />
+          </div>
+        </div>
+      </>
     )
   );
 }
