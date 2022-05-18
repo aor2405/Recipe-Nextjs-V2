@@ -179,7 +179,6 @@ export const recipeSlice = createSlice({
       })
       .addCase(createRecipeImage.fulfilled, (state, action) => {
         state.isLoading = false;
-        // state.recipes.push(action.payload);
       })
       .addCase(createRecipeImage.rejected, (state, action) => {
         state.isLoading = false;
@@ -191,7 +190,6 @@ export const recipeSlice = createSlice({
       })
       .addCase(getRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
-        // state.isSuccess = true;
         state.recipes = action.payload;
       })
       .addCase(getRecipes.rejected, (state, action) => {

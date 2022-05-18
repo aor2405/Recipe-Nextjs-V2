@@ -32,30 +32,25 @@ function index() {
     setPathname(recipeId);
 
     dispatch(getSingleRecipe(recipeId.slice(9)));
-    // return () => {
-    //   dispatch(reset());
-    // };
   }, [isError, message, dispatch]);
 
   if (isLoading) {
     return <Spinner />;
   }
 
-  console.log('USER', user);
-
   return (
     mounted && (
       <>
         <NavBar />
 
-        <div className="max-w-3xl mx-auto mt-8 pb-8 sm:max-w-7xl sm:px-8 sm:grid sm:grid-cols-12 sm:gap-8">
+        <div className="max-w-3xl mx-auto px-2 mt-8 pb-8 sm:max-w-7xl sm:px-8 sm:grid sm:grid-cols-12 sm:gap-8">
           <aside className="sm:col-span-4 sm:h-screen">
             <div className="w-full rounded-lg bg-burntOrange shadow text-peach  ">
               <div className="flex-shrink-0">
                 <h2 className="text-2xl font-bold font-header pl-6 pt-6">
                   Description
                 </h2>
-                <div className="mt-2 px-4 text">{recipes.description}</div>
+                <div className="mt-2 px-4">{recipes.description}</div>
               </div>
               <p className="text-2xl font-bold font-header pt-6 mb-2 ml-8">
                 Ingredients
@@ -95,8 +90,8 @@ function index() {
               <div>
                 {user ? (
                   user._id === recipes.user && (
-                    <div className="mt-2 pb-8 flex justify-center">
-                      <div className="mt-3 sm:mt-3 sm:ml-3 w-40 bg-peach rounded-lg">
+                    <div className="mt-2 pb-8 px-2 sm:flex sm:justify-center">
+                      <div className="mt-3 w-40 bg-peach rounded-lg mx-auto sm:mx-0 sm:mt-3 sm:ml-3">
                         <Link href={`/recipes/${pathname.slice(9)}/edit`}>
                           <button
                             type="submit"
@@ -106,7 +101,7 @@ function index() {
                           </button>
                         </Link>
                       </div>
-                      <div className="mt-3 sm:mt-3 sm:ml-3 w-40 bg-peach rounded-lg">
+                      <div className="mt-3 w-40 bg-peach rounded-lg mx-auto sm:mx-0 sm:mt-3 sm:ml-3">
                         <Link href="/recipes">
                           <button
                             onClick={() => {

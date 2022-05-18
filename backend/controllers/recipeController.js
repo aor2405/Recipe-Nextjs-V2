@@ -5,7 +5,6 @@ const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 const Recipe = require('../models/recipeModel');
-const User = require('../models/userModel');
 
 const getRecipes = asyncHandler(async (req, res) => {
   const allRecipes = await Recipe.find({});
@@ -54,26 +53,35 @@ const imageRecipe = async (req, res) => {
   }
 };
 
+let count = 0;
+
 const postRecipe = asyncHandler(async (req, res) => {
   if (!req.body) {
     res.status(400);
     throw new Error('Please fill out the input fields');
   }
-  const { title, method, description, ingredients, image } = req.body.formData;
 
-  const newMethodArray = method.split('*');
-  const newMethod = newMethodArray;
+  if (count < 1) {
+    count++;
+    const { title, method, description, ingredients, image } =
+      req.body.formData;
 
-  const recipe = await Recipe.create({
-    user: req.user.id,
-    userName: req.user.name,
-    title: title,
-    method: newMethod,
-    description: description,
-    ingredients: ingredients,
-    image: image,
-  });
-  return res.status(200).json(recipe);
+    const newMethodArray = method.split('*');
+    const newMethod = newMethodArray;
+
+    const recipe = await Recipe.create({
+      user: req.user.id,
+      userName: req.user.name,
+      title: title,
+      method: newMethod,
+      description: description,
+      ingredients: ingredients,
+      image: image,
+    });
+    return res.status(200).json(recipe);
+  } else {
+    return;
+  }
 });
 
 const updateRecipe = asyncHandler(async (req, res) => {
