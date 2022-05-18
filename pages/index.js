@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-import Logo from '../components/Logo/Logo';
 import NavBar from '../components/layout/mainNavigation';
 
 export default function Home() {
@@ -17,13 +16,9 @@ export default function Home() {
         <main>
           <div className="lg:h-screen">
             <div className="mx-auto max-w-6xl lg:px-8">
-              <div className="flex justify-center my-8 xs:hidden">
-                <Logo />
-              </div>
               <div className="mt-16 md:grid md:grid-cols-2 md:gap-8">
                 <div className="mx-auto max-w-md px-4 text-center sm:max-w-2xl sm:px-8 md:flex md:items-center lg:px-0 lg:text-left">
                   <div className="w-full rounded-lg bg-burntOrange shadow lg:pl-4 lg:py-2">
-                    {/* <h1 className="text-peach font-extrabold pt-12 sm:mt-5 sm:text-2xl lg:text-5xl lg:mt-6 xl:text-6xl"> */}
                     <h1 className="text-peach font-extrabold pt-12 text-3xl sm:mt-5 md:text-4xl lg:text-6xl">
                       A better way to store your Recipes
                     </h1>
@@ -49,7 +44,6 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="invisible md:visible lg:m-0 md:relative">
-                  {/* <div className="relative"> */}
                   <div className="mx-auto max-w-md px-4 lg:max-w-none lg:px-0">
                     <img
                       className="w-full rounded-lg lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"

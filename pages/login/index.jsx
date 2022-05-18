@@ -60,12 +60,15 @@ export default function Login() {
     <>
       <NavBar />
       <div className="max-w-xl mx-auto px-8 grid grid-col-12 lg:max-w-7xl lg:grid-cols-12 lg:gap-8">
-        {/* <main className="h-screen md:py-24 md:mt-0 md:col-start-5 md:col-span-6"> */}
         <main className="h-screen pt-12 lg:pt-24 lg:col-start-4 lg:col-span-6">
           <div className="w-full rounded-lg bg-burntOrange shadow p-6">
             <div>
               <div className="flex justify-center">
-                <img className="w-40" src="/images/table.svg" alt="" />
+                <img
+                  className="w-40"
+                  src="/images/table.svg"
+                  alt="A couple sitting together enjoying a meal"
+                />
               </div>
               <h2 className="mt-6 text-center text-3xl font-extrabold text-peach">
                 Sign in to your account

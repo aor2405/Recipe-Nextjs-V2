@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Disclosure } from '@headlessui/react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   MenuIcon,
   XIcon,
@@ -9,15 +10,10 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/outline';
 
-import { useSelector, useDispatch } from 'react-redux';
 import { logout, reset } from '../../src/features/auth/authSlice';
-
 import Logo from '../Logo/Logo';
 
-const navigation = [
-  { name: 'Recipce', href: '/recipes', current: true },
-  { name: 'Contact', href: '/contact', current: false },
-];
+const navigation = [{ name: 'All recipces', href: '/recipes', current: true }];
 
 export default function Example() {
   const dispatch = useDispatch();
@@ -40,7 +36,6 @@ export default function Example() {
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-            {/* <div className="relative items-center justify-between h-16 sm:flex"> */}
             <div className="relative items-center justify-between h-16 sm:flex">
               <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
                 {/* Mobile menu button*/}
@@ -55,7 +50,6 @@ export default function Example() {
               </div>
               <div className="flex-1 flex items-center justify-center md:items-stretch md:justify-start">
                 <div className="flex-shrink-0 flex items-center">
-                  {/* <div className="mt-2 invisible xs:visible flex-shrink-0 flex items-center"> */}
                   <div className="mt-2 flex-shrink-0 w-48 xs:w-56 sm:w-72">
                     <Link href="/">
                       <a>
@@ -65,19 +59,19 @@ export default function Example() {
                   </div>
                 </div>
                 <div className="hidden md:block md:ml-6">
-                  <div className="flex space-x-4 pt-3 ">
+                  <div className="flex space-x-4 pt-2">
                     {navigation.map((item) => (
                       <a
                         key={item.name}
                         href={item.href}
-                        className="px-3 py-2 rounded-md text-sm font-medium"
+                        className="px-3 py-2 rounded-md font-medium"
                         aria-current={item.current ? 'page' : undefined}
                       >
                         {item.name}
                       </a>
                     ))}
                     {user && (
-                      <div className="px-3 py-2 text-sm font-medium">
+                      <div className="px-3 py-2 font-medium">
                         <Link href="/recipes/new-recipe">
                           <a className="flex">
                             <p>Add recipe</p>
@@ -89,7 +83,7 @@ export default function Example() {
                 </div>
               </div>
 
-              <div className="invisible md:visible flex">
+              <div className="flex invisible md:visible">
                 {user ? (
                   <div>
                     <button className="flex" onClick={onLogout}>
@@ -104,7 +98,7 @@ export default function Example() {
                       <Link href="/login">
                         <a className="flex">
                           <LoginIcon className="w-5 h-5 mr-1 mt-1" />
-                          <p>Login</p>
+                          <p className="text-base">Login</p>
                         </a>
                       </Link>
                     </div>

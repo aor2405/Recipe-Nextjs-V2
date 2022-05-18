@@ -13,10 +13,6 @@ export default function Home() {
     setMounted(true);
   }, []);
 
-  //Select the loaded customers' list from central state
-  const userList = useSelector((state) => state.auth);
-  const { user } = userList;
-
   const recipeList = useSelector((state) => state.recipes);
   const { recipes, isLoading, isError, message } = recipeList;
 
@@ -46,8 +42,11 @@ export default function Home() {
               <div className="mt-10 w-72 lg:w-96">
                 <AllRecipe />
               </div>
-              <div className="hidden lg:block w-40">
-                <img src="/images/table.svg" alt="" />
+              <div className="hidden w-40 lg:block">
+                <img
+                  src="/images/table.svg"
+                  alt="A couple sitting at a table eating a meal"
+                />
               </div>
             </div>
 

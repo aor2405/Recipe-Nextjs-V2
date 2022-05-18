@@ -13,7 +13,7 @@ export default function RecipeCard(recipes) {
               <img
                 className="h-48 w-full object-cover cursor-pointer"
                 src={recipe.image}
-                alt="Recipe image"
+                alt="Image of the recipe"
               />
             </Link>
           </div>
@@ -30,7 +30,7 @@ export default function RecipeCard(recipes) {
             <div className="mt-6 flex items-center">
               <div className="flex-shrink-0"></div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-peach italic">
+                <p className="text-sm text-peach font-medium italic">
                   Posted by: {recipe.userName}
                 </p>
               </div>

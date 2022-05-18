@@ -4,12 +4,11 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 
 import Spinner from '../../../components/Spinner';
+import NavBar from '../../../components/layout/mainNavigation';
 import {
   createRecipe,
   createRecipeImage,
 } from '../../../src/features/recipes/recipeSlice';
-
-import NavBar from '../../../components/layout/mainNavigation';
 
 export default function NewRecipeForm() {
   const [mounted, setMounted] = useState(false);
@@ -62,6 +61,7 @@ export default function NewRecipeForm() {
   };
 
   if (formData.image.length > 0) {
+    console.log('CREATING RECIPE');
     dispatch(createRecipe({ formData }));
     setFormData({
       title: '',
@@ -95,10 +95,10 @@ export default function NewRecipeForm() {
     mounted && (
       <>
         <NavBar />
-        <div className="max-w-7xl mx-auto py-6 lg:px-8">
+        <div className="max-w-7xl mx-auto py-6 px-2 lg:px-8">
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <aside className="md:col-span-1">
-              <div className="px-4 sm:px-0 text-center">
+              <div className="px-4 text-center sm:px-0 ">
                 <h3 className="text-2xl font-medium leading-6 ">
                   Add a new recipe
                 </h3>
@@ -110,7 +110,7 @@ export default function NewRecipeForm() {
               </div>
 
               <div>
-                <div className="hidden lg:block sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
+                <div className="hidden mt-8 sm:max-w-2xl sm:px-6 md:block lg:max-w-none lg:px-0">
                   <img
                     src="https://images.unsplash.com/photo-1540660290370-8aa90e451e8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
                     alt="Photo of a Waffle"
@@ -119,7 +119,7 @@ export default function NewRecipeForm() {
               </div>
             </aside>
 
-            <div className="mt-5 md:mt-0 md:col-span-2 rounded-lg bg-burntOrange">
+            <div className="mt-5 rounded-lg bg-burntOrange md:mt-0 md:col-span-2">
               <form
                 onSubmit={onSubmit}
                 method="POST"
@@ -139,7 +139,7 @@ export default function NewRecipeForm() {
                           type="text"
                           id="title"
                           name="title"
-                          className="shadow-sm bg-peach focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                          className="shadow-sm bg-peach focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full border border-gray-300 rounded-md sm:text-sm "
                           value={formData.title}
                           onChange={changeHandler}
                         />
@@ -158,7 +158,7 @@ export default function NewRecipeForm() {
                           id="description"
                           name="description"
                           rows={3}
-                          className="shadow-sm bg-peach focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                          className="shadow-sm bg-peach focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full border border-gray-300 rounded-md sm:text-sm "
                           value={formData.description}
                           onChange={changeHandler}
                         />
@@ -175,7 +175,7 @@ export default function NewRecipeForm() {
                           id="ingredients"
                           name="ingredients"
                           rows={3}
-                          className="shadow-sm bg-peach focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                          className="shadow-sm bg-peach focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full border border-gray-300 rounded-md sm:text-sm "
                           value={formData.ingredients}
                           onChange={changeHandler}
                         />
@@ -191,7 +191,7 @@ export default function NewRecipeForm() {
                           id="method"
                           name="method"
                           rows={3}
-                          className="shadow-sm bg-peach focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                          className="shadow-sm bg-peach focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full border border-gray-300 rounded-md sm:text-sm "
                           value={formData.method}
                           onChange={changeHandler}
                         />

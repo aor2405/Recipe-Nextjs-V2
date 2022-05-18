@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 
 import Spinner from '../../../../components/Spinner';
 import {
-  createRecipe,
   createRecipeImage,
   updateRecipe,
 } from '../../../../src/features/recipes/recipeSlice';
@@ -34,7 +33,7 @@ export default function editRecipeForm() {
   const router = useRouter();
 
   const recipeList = useSelector((state) => state.recipes);
-  const { isLoading, isSuccess } = recipeList;
+  const { isLoading } = recipeList;
 
   function changeHandler(e) {
     const value = e.target.value;
@@ -81,10 +80,7 @@ export default function editRecipeForm() {
     router.replace('/recipes');
   }
 
-  // console.log('formResult', formData);
-
   const customIdPending = 'custom-id-pending';
-  const customIdSuccess = 'custom-id-success';
 
   if (isLoading) {
     toast.info('Updating your recipe!', {
@@ -98,10 +94,10 @@ export default function editRecipeForm() {
     mounted && (
       <>
         <NavBar />
-        <div className="max-w-7xl mx-auto py-6 lg:px-8">
+        <div className="max-w-7xl mx-auto py-6 px-2 lg:px-8">
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <aside className="md:col-span-1">
-              <div className="px-4 sm:px-0 text-center">
+              <div className="px-4 text-center sm:px-0">
                 <h3 className="text-2xl font-medium leading-6">
                   Edit your recipe
                 </h3>
@@ -112,16 +108,16 @@ export default function editRecipeForm() {
                 </p>
               </div>
               <div>
-                <div className="hidden lg:block sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
+                <div className="hidden mt-8 sm:max-w-2xl sm:px-6 md:block lg:max-w-none lg:px-0">
                   <img
                     src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-                    alt="Photo of a Waffle"
+                    alt="Photo of a bowl of soup"
                   />
                 </div>
               </div>
             </aside>
 
-            <div className="mt-5 md:mt-0 md:col-span-2 rounded-lg bg-burntOrange">
+            <div className="mt-5 rounded-lg bg-burntOrange md:mt-0 md:col-span-2">
               <form
                 onSubmit={onSubmit}
                 method="POST"
@@ -141,7 +137,7 @@ export default function editRecipeForm() {
                           type="text"
                           id="title"
                           name="title"
-                          className="shadow-sm bg-peach focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                          className="shadow-sm bg-peach focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full border border-gray-300 rounded-md sm:text-sm"
                           value={formData.title}
                           onChange={changeHandler}
                         />
@@ -160,7 +156,7 @@ export default function editRecipeForm() {
                           id="description"
                           name="description"
                           rows={3}
-                          className="shadow-sm bg-peach focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                          className="shadow-sm bg-peach focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full border border-gray-300 rounded-md sm:text-sm"
                           value={formData.description}
                           onChange={changeHandler}
                         />
@@ -177,7 +173,7 @@ export default function editRecipeForm() {
                           id="ingredients"
                           name="ingredients"
                           rows={3}
-                          className="shadow-sm bg-peach focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                          className="shadow-sm bg-peach focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full border border-gray-300 rounded-md sm:text-sm"
                           value={formData.ingredients}
                           onChange={changeHandler}
                         />
@@ -193,7 +189,7 @@ export default function editRecipeForm() {
                           id="method"
                           name="method"
                           rows={3}
-                          className="shadow-sm bg-peach focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                          className="shadow-sm bg-peach focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full border border-gray-300 rounded-md sm:text-sm"
                           value={formData.method}
                           onChange={changeHandler}
                         />
