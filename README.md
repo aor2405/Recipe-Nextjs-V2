@@ -20,6 +20,8 @@ Features:
 - View recipes submitted by other users
 - State management carried out with React-Redux
 
+Link to the site: https://oreilly-recipes.vercel.app/
+
 ![Main screen](https://res.cloudinary.com/dd2duttda/image/upload/v1654681851/Screenshot_2022-06-08_at_13.47.16_vwwuph.png)
 ![User login](https://res.cloudinary.com/dd2duttda/image/upload/v1654681851/Screenshot_2022-06-08_at_13.47.33_iti615.png)
 ![Recipe creation](https://res.cloudinary.com/dd2duttda/image/upload/v1654681851/Screenshot_2022-06-08_at_13.48.40_eazugs.png)
