@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Full Stack application with CRUD functionality 
 
-## Getting Started
+![Homepage](https://res.cloudinary.com/dd2duttda/image/upload/v1654681851/Screenshot_2022-06-08_at_13.46.39_nbxasw.png "Optional title")
 
-First, run the development server:
+The Objective of this project was to create a full stack application that used Nextjs and TailwindCSS on the frontend with an Express server that connected to a MongoDB database. This application has full CRUD functionality
 
-```bash
-npm run svere
-# or
-yarn server
-```
+Technology used:
+- React
+- React-Redux
+- NextJs
+- TailwindCSS
+- MongoDB
+- NodeJs
+- Express
 
-https://documenter.getpostman.com/view/17861398/Uyr8nJAs
+Features:
+- User registeration/login
+- Creatation of recipes tied to that specific user
+- Ability for a user to edit or delete their own recipe
+- View recipes submitted by other users
+- State management carried out with React-Redux
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![Main screen](https://res.cloudinary.com/dd2duttda/image/upload/v1654681851/Screenshot_2022-06-08_at_13.47.16_vwwuph.png)
+![User login](https://res.cloudinary.com/dd2duttda/image/upload/v1654681851/Screenshot_2022-06-08_at_13.47.33_iti615.png)
+![Recipe creation](https://res.cloudinary.com/dd2duttda/image/upload/v1654681851/Screenshot_2022-06-08_at_13.48.40_eazugs.png)
+![Recipe](https://res.cloudinary.com/dd2duttda/image/upload/v1654681851/Screenshot_2022-06-08_at_13.48.26_rmwdpw.png)
