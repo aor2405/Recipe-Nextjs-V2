@@ -74,7 +74,7 @@ export default function Example() {
                       <div className="px-3 py-2 font-medium">
                         <Link href="/recipes/new-recipe">
                           <a className="flex">
-                            <p>Add recipe</p>
+                            <p>Add Recipe</p>
                           </a>
                         </Link>
                       </div>
@@ -131,7 +131,7 @@ export default function Example() {
                 <div>
                   <div>
                     <Link href="/recipes/new-recipe">
-                      <a className="flex ">
+                      <a className="flex">
                         <p className="block px-3 py-2 text-base font-medium ">
                           Add Recipe
                         </p>
