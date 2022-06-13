@@ -1,6 +1,6 @@
 ## Full Stack application with CRUD functionality 
 
-![Homepage](https://res.cloudinary.com/dd2duttda/image/upload/v1654681851/Screenshot_2022-06-08_at_13.46.39_nbxasw.png "Optional title")
+![Homepage](https://res.cloudinary.com/dd2duttda/image/upload/v1655107144/Screenshot_2022-06-13_at_11.24.51_wlychu.png "Optional title")
 
 The Objective of this project was to create a full stack application that used Nextjs and TailwindCSS on the frontend with an Express server that connected to a MongoDB database. This application has full CRUD functionality
 
@@ -22,7 +22,7 @@ Features:
 
 Link to the site: https://oreilly-recipes.vercel.app/
 
-![Main screen](https://res.cloudinary.com/dd2duttda/image/upload/v1654681851/Screenshot_2022-06-08_at_13.47.16_vwwuph.png)
-![User login](https://res.cloudinary.com/dd2duttda/image/upload/v1654681851/Screenshot_2022-06-08_at_13.47.33_iti615.png)
-![Recipe creation](https://res.cloudinary.com/dd2duttda/image/upload/v1654681851/Screenshot_2022-06-08_at_13.48.40_eazugs.png)
-![Recipe](https://res.cloudinary.com/dd2duttda/image/upload/v1654681851/Screenshot_2022-06-08_at_13.48.26_rmwdpw.png)
+![Main screen](https://res.cloudinary.com/dd2duttda/image/upload/v1655105200/Screenshot_2022-06-13_at_11.25.12_jhcc8o.png)
+![User login](https://res.cloudinary.com/dd2duttda/image/upload/v1655105200/Screenshot_2022-06-13_at_11.25.26_lis1x9.png)
+![Recipe creation](https://res.cloudinary.com/dd2duttda/image/upload/v1655107504/Screenshot_2022-06-13_at_12.04.15_dvesac.png)
+![Recipe](https://res.cloudinary.com/dd2duttda/image/upload/v1655107504/Screenshot_2022-06-13_at_12.03.59_sllhmr.png)
