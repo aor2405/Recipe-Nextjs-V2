@@ -132,8 +132,8 @@ export default function Example() {
                   <div>
                     <Link href="/recipes/new-recipe">
                       <a className="flex ">
-                        <p className="block px-3 py-2 text-base font-medium">
-                          Add recipe
+                        <p className="block px-3 py-2 text-base font-medium ">
+                          Add Recipe
                         </p>
                       </a>
                     </Link>
