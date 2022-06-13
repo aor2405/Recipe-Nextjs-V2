@@ -133,7 +133,7 @@ export default function Example() {
                     <Link href="/recipes/new-recipe">
                       <a className="flex ">
                         <p className="block px-3 py-2 text-base font-medium">
-                          Add recipe
+                          Add Recipe
                         </p>
                       </a>
                     </Link>
