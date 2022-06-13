@@ -13,7 +13,7 @@ import {
 import { logout, reset } from '../../src/features/auth/authSlice';
 import Logo from '../Logo/Logo';
 
-const navigation = [{ name: 'All recipces', href: '/recipes', current: true }];
+const navigation = [{ name: 'All Recipes', href: '/recipes', current: true }];
 
 export default function Example() {
   const dispatch = useDispatch();
