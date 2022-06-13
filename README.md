@@ -23,6 +23,6 @@ Features:
 Link to the site: https://oreilly-recipes.vercel.app/
 
 ![Main screen](https://res.cloudinary.com/dd2duttda/image/upload/v1655105200/Screenshot_2022-06-13_at_11.25.12_jhcc8o.png)
-![User login](https://res.cloudinary.com/dd2duttda/image/upload/v1655105200/Screenshot_2022-06-13_at_11.25.26_lis1x9.png)
+![User registeration](https://res.cloudinary.com/dd2duttda/image/upload/v1655108394/Screenshot_2022-06-13_at_12.19.39_ihayqf.png)
 ![Recipe creation](https://res.cloudinary.com/dd2duttda/image/upload/v1655107504/Screenshot_2022-06-13_at_12.04.15_dvesac.png)
 ![Recipe](https://res.cloudinary.com/dd2duttda/image/upload/v1655107504/Screenshot_2022-06-13_at_12.03.59_sllhmr.png)
